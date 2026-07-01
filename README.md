@@ -1,60 +1,66 @@
-# theilsnetwork.github.io
+# The ILS Network — Website
 
-This is based off of Aerial, a single page, single screen responsive site template. Real simple.
-Makes heavy use of CSS animationwork as a landing page that just directs folks to your stuff elsewhere
-on the www.
+Official website for **theILSnetwork.com**
 
-The scrolling mountainous background was derived from "Icefields" by Ryan Schroeder,
-a talented photographer from Vancouver who graciously released it on Unsplash under
-the CC0 license. Be sure to check out his other stuff over at flickr (link below)
-as well as all the other kickass CC0-licensed images at Unsplash (unsplash.com).
+## Project Files
 
-Credit to:
-AJ
-n33.co @n33co dribbble.com/n33 
-on site design/layout
+```
+ilsnetwork-website/
+├── index.html     ← full single-page site
+├── style.css      ← all styles (dark premium design, responsive)
+├── script.js      ← nav, scroll animations, contact form
+├── CNAME          ← custom domain for GitHub Pages
+└── .gitignore
+```
 
-The Scrolling Background:
+---
 
-	This relies entirely on CSS to do its thing, which is cool, but that makes
-	changing it a bit weird/tricky at first. You can still use pretty much any image
-	you want, but for best results make sure yours is:
-	
-	- Horizontally tileable.
-	- Wide and short.
-	- About 1500px wide.
-	- Fades to a solid color either at the top of bottom (which is used to fill
-	  the empty space above or below your image).
+## Publish to GitHub Pages
 
-	Now, there are two ways to use it: with CSS, or with Sass:
+### Step 1 — Push to your GitHub account
+```bash
+git remote add origin https://github.com/YOUR-ORG/ilsnetwork-website.git
+git push -u origin main
+```
 
-	CSS:
-	
-		Look for this line in css/style.css (line 108 as of this writing):
-		
-			background: #348cb2 url("images/bg.jpg") bottom left;
-			
-		and use it to set the page background color, URL, and placement of
-		your image. It should be as close to 1500px wide as you can get it.
+### Step 2 — Enable GitHub Pages
+In your repo on GitHub:
+**Settings → Pages → Source:** `Deploy from a branch` → **Branch:** `main` → **Folder:** `/ (root)` → **Save**
 
-	Sass:
-	
-		Set the value of $bg to the page background color, URL, and placement
-		of your image. Change $bg-width if your image is something other than
-		1500px wide.
+### Step 3 — Point your domain (DNS)
+Add these records in your DNS provider (GoDaddy, Namecheap, Cloudflare, etc.):
 
+| Type  | Name | Value                  |
+|-------|------|------------------------|
+| A     | @    | 185.199.108.153        |
+| A     | @    | 185.199.109.153        |
+| A     | @    | 185.199.110.153        |
+| A     | @    | 185.199.111.153        |
+| CNAME | www  | YOUR-ORG.github.io     |
 
-Credits:
+The `CNAME` file is already in the repo — GitHub Pages will handle the rest.
 
-	Background Image:
-		Ryan Schroeder via Unsplash (unsplash.com - CC0 licensed)
-			"Icefields" (flickr.com/photos/ryanschroeder/11876741703)
+---
 
-	Icons:
-		Font Awesome (fortawesome.github.com/Font-Awesome)
+## Activate the Contact Form
 
-	Other:
-		html5shiv.js (@afarkas @jdalton @jon_neal @rem)
-		CSS3 PIE (css3pie.com)
-		Sass (sass-lang.com)
-		skel (n33.co)
+The form uses [Formspree](https://formspree.io) (free tier: 50 submissions/month):
+
+1. Create a free account at formspree.io
+2. Create a new form → copy your **Form ID**
+3. Open `index.html` and replace `YOUR_FORM_ID`:
+   ```html
+   action="https://formspree.io/f/xabcdefg"
+   ```
+
+---
+
+## Customization Quick-Reference
+
+| What to change | Where |
+|----------------|-------|
+| Headline & copy | `index.html` — search for the section comments |
+| Colors & fonts | `style.css` — edit the `:root` CSS variables at the top |
+| Social links | `index.html` — `<footer>` section, four `<a href="#">` icons |
+| Stats (500+, 12+) | `index.html` — `about-stats` section |
+| Contact email | `index.html` — `mailto:` link in the connect section |
